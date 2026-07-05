@@ -16,3 +16,22 @@ let obj={
     name:"yash",
     age:22
 }
+
+// ************************************************************************
+// stack(Primitive),Heap (Non-Primitive)
+let myYoutubename="Yashodeepjadhav.com"
+let anothername=myYoutubename
+anothername="chaiaurcode"
+
+console.log(myYoutubename);
+console.log(anothername);
+
+// heap:
+let userone={
+    email:"yash@gmail.com",
+    age:22
+}
+let usertwo = userone;
+usertwo.email="yashodeeep@gmail.com"
+console.log(userone);
+console.log(usertwo);
