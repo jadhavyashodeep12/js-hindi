@@ -4,7 +4,7 @@ var accountPassword="12345"
 accountCity="mumbai"
 let accountState;
 
-// accountId=2  // not allowed if it is const
+// accountId==2  // not allowed if it is const
 accountEmail="abcd@gmail.com"
 accountPassword="54321"
 accountCity="pune"
