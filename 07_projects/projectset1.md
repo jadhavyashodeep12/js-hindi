@@ -65,3 +65,18 @@ form.addEventListener('submit', function (e) {
 
 
 ```
+
+## Project 3 solution code:
+```javascript
+const clock = document.getElementById('clock');
+
+let date = new Date();
+console.log(date.toLocaleTimeString());
+
+setInterval(function () {
+  let date = new Date();
+  // console.log(date.toLocaleTimeString());   uncomment this add see the output while clock.innerHTML should be commented.
+  // clock.innerHTML = date.toLocaleTimeString(); uncomment to start project.
+}, 1000); // 1000 is milesec
+
+```
