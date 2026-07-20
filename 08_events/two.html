@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Chai  aur code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    //method 1:-
+    // setTimeout(function(){
+    //     console.log("Yashodeep")
+    // },2000)
+    //method 2:
+    const sayYashodeep=function(){
+        console.log("Yashodeep")
+    }
+    setTimeout(sayYashodeep,2000)
+    
+    const changeText=function(){
+        document.querySelector('h1').innerHTML="Best JS series"
+    }
+    const changeMe=setTimeout(changeText,3000)
+
+    // if i wnat to stop the event before given seconds then
+    // we usee clearTimeout:
+    document.querySelector('#stop').addEventListener
+    ('click',function(){
+        clearTimeout(changeMe)
+        alert("STOPED")
+    })
+</script>
+</html>
