@@ -174,4 +174,57 @@ function newGame() {
 
 ```
 
+## Project 5 solution
+```Javascript
+const insert = document.getElementById('insert');
+
+window.addEventListener('keydown', function (e) {
+  insert.innerHTML = `
+    <div class='color'>
+      <table>
+        <tr>
+          <th>key</th>
+          <th>keycode</th>
+          <th>code</th>
+        </tr>
+        <tr>
+          <td>${e.key}</td>
+          <td>${e.keycode}</td>
+          <td>${e.code}</td>
+        </tr>
+      </table>  
+    </div>
+  `;
+});
+
+```
+
+## Project 6 solution 
+```javascript
+//generate a random color
+const randoColor = function () {
+  const hex = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += hex[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+let intervalID;
+const startchangingcolor = function () {
+  function changeBg() {
+    document.body.style.backgroundColor = randoColor();
+  }
+  intervalID = setInterval(changeBg, 1000);
+};
+const stopchangingcolor = function () {
+  clearInterval(intervalID);
+};
+
+document.querySelector('#start').addEventListener('click', startchangingcolor);
+
+document.querySelector('#stop').addEventListener('click', stopchangingcolor);
+
+```
+
 
