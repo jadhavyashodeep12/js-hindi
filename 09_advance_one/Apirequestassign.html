@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+const xhr = new XMLHttpRequest();
+
+xhr.open('GET', requestUrl);
+
+xhr.onreadystatechange = function () {
+
+    if (xhr.readyState === 4) {
+
+        const data = JSON.parse(xhr.responseText);
+
+        // Create Button
+        const btn = document.createElement("button");
+        btn.innerText = "Show Details";
+        btn.style.backgroundColor='blue'
+
+        // Create div
+        const output = document.createElement("div");
+
+        // Add button and div to body
+        document.body.appendChild(btn);
+        document.body.appendChild(output);
+
+        // Button Click
+        btn.addEventListener("click", function () {
+
+            output.innerHTML = `
+                <img src="${data.avatar_url}" width="150" alt="Profile Picture">
+                <h2>Name: ${data.name}</h2>
+                <p>Followers: ${data.followers}</p>
+            `;
+
+        });
+
+    }
+};
+
+xhr.send();
+
+</script>
+</html>
