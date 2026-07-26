@@ -252,3 +252,46 @@
 
 **Q65: What is the modern way to set up inheritance between two objects in JavaScript?**
 - In the old days, developers used the `__proto__` property (e.g., `Child.__proto__ = Parent`). Today, the modern and safer approach is to use `Object.setPrototypeOf(Child, Parent)`.
+
+**Q66: What is the `.call()` method in JavaScript used for?**
+- It is a built-in function method that allows you to call a function, but specifically force/override what the `this` keyword points to inside that function.
+
+**Q67: If you have a constructor `createUser`, and inside it you run another constructor `SetUsername(username)`, why doesn't it work unless you use `SetUsername.call(this, username)`?**
+- If you just run `SetUsername()`, it runs in its own isolated context. When it finishes, that context is destroyed, and the username disappears. By using `.call(this, ...)`, you are forcing `SetUsername` to use the outer `createUser`'s `this` object. So when it says `this.username = username`, it is gluing the username directly onto your new `createUser` object before it gets destroyed.
+
+**Q68: What is the `class` keyword in JavaScript? Is it different from classes in other languages like Java or C++?**
+- Yes, it is different. In JavaScript, `class` is just "syntactic sugar" (a cleaner way to write code) over the existing Prototype-based inheritance we already use. It does not introduce a new object-oriented inheritance model to JS; it just makes writing prototypes much easier.
+
+**Q69: What does the `constructor()` method do inside a JavaScript class?**
+- It is a special method that automatically runs the exact moment you create a new object using the `new` keyword (e.g., `new User()`). It is used to initialize the object's properties (like setting `this.name = name`).
+
+**Q70: What does the `extends` keyword do in a JavaScript class?**
+- It is used to create a child class that inherits all the properties and methods of a parent class (e.g., `class Teacher extends User`). Behind the scenes, it automatically links their prototypes together (doing the job of `Object.setPrototypeOf`).
+
+**Q71: What is the `super()` function used for inside a child class constructor?**
+- `super()` is used to call the constructor of the Parent class. If your child class (`Teacher`) needs to set a `username`, but the Parent class (`User`) already has the code to do that, you call `super(username)` to pass the data up to the parent to handle it. (It replaces the old `.call(this)` method).
+
+**Q72: What does the `instanceof` operator do?**
+- It checks if an object was created by a specific class (or any of its parent classes) and returns `true` or `false` (e.g., `chai instanceof Teacher`).
+
+**Q73: In JavaScript, why can't you overwrite the value of `Math.PI` (e.g., `Math.PI = 5`)?**
+- Because deep inside the JavaScript engine, the `PI` property of the `Math` object has its "Property Descriptor" set to `writable: false`. This hard-locks the value in memory so it can never be changed by a developer.
+
+**Q74: How can you prevent a specific property in your own custom object from being modified or looped over?**
+- You can use `Object.defineProperty(myObject, 'propertyName', { writable: false, enumerable: false })`. 
+  - `writable: false` prevents the value from being changed.
+  - `enumerable: false` hides it so it won't show up in `for...in` loops or `Object.keys()`.
+
+**Q75: What are `get` and `set` (Getters and Setters) used for in JavaScript classes?**
+- They allow you to intercept someone trying to read or write a property. 
+  - `set` intercepts when someone assigns a value (e.g., `user.email = "yash@email.com"`), allowing you to validate or format the data before saving it.
+  - `get` intercepts when someone reads a value (e.g., `console.log(user.email)`), allowing you to modify the data before handing it back to them.
+
+**Q76: Why do we often use an underscore (e.g., `_password`) inside getter and setter methods?**
+- If your setter is named `password`, and inside of it you write `this.password = value`, it triggers the setter *again*, which triggers it *again*, causing an infinite loop (Stack Overflow) that crashes the app. By using `this._password` (a private, differently-named variable), you safely store the value without re-triggering the setter.
+
+**Q77: Before ES6 classes existed, how did developers add getters and setters to Constructor Functions?**
+- They had to use the `Object.defineProperty()` method inside the constructor, passing in an object containing the `get: function(){}` and `set: function(value){}` logic.
+
+**Q78: What does `Object.create(myObject)` do in JavaScript?**
+- It creates a brand new, empty object and automatically links its prototype (`__proto__`) to the object you passed in (`myObject`). It is a factory method used as an alternative to using constructor functions and the `new` keyword.
