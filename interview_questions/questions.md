@@ -125,3 +125,32 @@
 
 **Q30: Give a practical use case where `.reduce()` is commonly used in web development.**
 - The most common real-world use case for `.reduce()` is calculating the total price of all items in an E-commerce Shopping Cart (an array of objects). You loop over the cart, adding each `item.price` to the running total (accumulator).
+
+## 06_dom
+
+**Q31: What is the DOM (Document Object Model)?**
+- The DOM is a programming interface for web documents. It represents the page so that programs (like JavaScript) can change the document structure, style, and content. The DOM represents the document as a tree of nodes (objects).
+
+**Q32: Name three common ways to select an HTML element using JavaScript.**
+- `document.getElementById('id_name')`: Selects a single element by its unique ID.
+- `document.querySelector('.class_name')`: Selects the first element that matches the given CSS selector.
+- `document.querySelectorAll('tag_name')`: Selects ALL elements that match the given CSS selector and returns them in a NodeList.
+
+**Q33: How can you traverse (move) from a parent element to its children in the DOM?**
+- If you select a parent element, you can access its children using `parent.children` (which gives you an HTMLCollection array of the child elements). You can also use `parent.firstElementChild` or `parent.lastElementChild` to grab specific children quickly.
+
+**Q34: How do you traverse from a child element to its parent or next sibling in the DOM?**
+- To go up the tree, you use `child.parentElement`. 
+- To move sideways to the next element on the same level, you use `child.nextElementSibling`.
+
+**Q35: How do you create a brand new HTML element using JavaScript?**
+- You use `document.createElement('tagName')` (e.g., `document.createElement('div')`). After creating it, you can add classes, styles, and text to it, and finally attach it to the visible page using `document.body.appendChild()`.
+
+**Q36: Why might a developer prefer `createTextNode` over setting `innerText` when building elements in memory?**
+- While `innerText` is easier, `createTextNode` is generally considered more optimized and secure (protects against XSS attacks) when generating DOM trees dynamically from scratch, as it explicitly creates a text node without forcing the browser to parse/render any hidden HTML tags.
+
+**Q37: How do you replace an existing element in the DOM with a new one?**
+- First, you select the old element. Then, you create or select the new element. Finally, you use `oldElement.replaceWith(newElement)`. 
+
+**Q38: How do you completely remove an element from the DOM?**
+- You select the element and simply call `.remove()` on it (e.g., `document.querySelector('li:last-child').remove()`).
