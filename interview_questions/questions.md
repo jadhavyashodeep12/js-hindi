@@ -154,3 +154,43 @@
 
 **Q38: How do you completely remove an element from the DOM?**
 - You select the element and simply call `.remove()` on it (e.g., `document.querySelector('li:last-child').remove()`).
+
+## 07_projects
+
+**Q39: What is `addEventListener` used for?**
+- It is a method attached to HTML elements that listens for specific user actions (like `'click'`, `'mouseenter'`, `'keydown'`) and runs a callback function whenever that action occurs.
+
+**Q40: In an event listener callback function, what does `e.target` represent?**
+- `e` is the Event Object that the browser automatically passes to your callback function. `e.target` specifically represents the exact, precise HTML element that triggered the event (e.g., the exact button that was clicked).
+
+**Q41: Why do we use `e.preventDefault()` when handling form submissions in JavaScript?**
+- By default, when a user clicks a "Submit" button inside an HTML `<form>`, the browser attempts to immediately refresh the page and send data to a server. `e.preventDefault()` stops this default behavior, allowing us to process the form data using JavaScript without the page reloading.
+
+**Q42: How do you get the text that a user typed into an HTML input field?**
+- You select the input element and access its `.value` property (e.g., `document.querySelector('#username').value`).
+
+**Q43: What is the difference between `setTimeout` and `setInterval` in JavaScript?**
+- `setTimeout` executes a function **exactly once** after a specified delay. 
+- `setInterval` executes a function **repeatedly, forever**, with a specified delay between each run (until it is explicitly cleared).
+
+**Q44: How do you get the current system date and time in JavaScript?**
+- You create a new instance of the Date object using `new Date()`. You can then extract specific parts of the time using methods like `.toLocaleTimeString()`.
+
+**Q45: How do you generate a random whole number between 1 and 100 in JavaScript?**
+- You use `parseInt(Math.random() * 100 + 1)`. `Math.random()` generates a decimal between 0 and 0.999. We multiply by 100, add 1 so it doesn't result in a 0, and use `parseInt()` (or `Math.floor()`) to chop off the decimals.
+
+**Q46: How do you disable an HTML input field (like a text box or button) using JavaScript so the user can no longer click or type in it?**
+- You select the element and use `element.setAttribute('disabled', '')`. To turn it back on, you use `element.removeAttribute('disabled')`.
+
+**Q47: How do you detect which key a user pressed on their keyboard?**
+- You attach an event listener to the `window` object listening for the `'keydown'` event (e.g., `window.addEventListener('keydown', function(e) { ... })`).
+
+**Q48: What is the difference between `e.key` and `e.code` in a keyboard event?**
+- `e.key` returns the actual character value of the key pressed (e.g., if you press the 'A' key, it returns `"a"`. If you hold Shift and press it, it returns `"A"`).
+- `e.code` returns the physical physical key on the keyboard, regardless of language or shift state (e.g., it will always return `"KeyA"`).
+
+**Q49: How do you stop a `setInterval` loop from running?**
+- When you create the interval, you must save it to a variable (e.g., `let myTimer = setInterval(...)`). To stop it, you pass that variable into `clearInterval(myTimer)`.
+
+**Q50: How do you generate a random Hex color code (e.g., `#FF0000`) in JavaScript?**
+- You create a string containing all valid hex characters (`"0123456789ABCDEF"`). Then, you run a loop 6 times, using `Math.random()` to pick a random character from that string and attach it to a `#` symbol.
