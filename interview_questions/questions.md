@@ -229,3 +229,26 @@
 
 **Q59: Why do we have to call `.json()` when using the modern `fetch` API?**
 - `fetch()` returns a Response object containing headers, status codes, and the raw body stream. To actually read the data as a JavaScript Object, you must call the `response.json()` method. (Note: `response.json()` itself returns *another* Promise, which is why we need a second `.then()` or `await`!).
+
+## 10_classes_and_oop
+
+**Q60: What does the `this` keyword refer to in JavaScript?**
+- `this` refers to the **current context** or the object that is executing the current function. If used inside an object's method, `this` refers to the object itself.
+
+**Q61: What exactly happens behind the scenes when you use the `new` keyword?**
+- 1. A brand new, empty object `{}` is created.
+- 2. A constructor function is called, and the `this` keyword is bound to that newly created empty object.
+- 3. The newly created object gets secretly linked to the constructor's `.prototype`.
+- 4. The newly created object is returned automatically (even if you don't write `return this`).
+
+**Q62: In JavaScript, is it possible to add properties directly to a function (e.g., `myFunction.power = 2`)?**
+- Yes! In JavaScript, everything (including functions and arrays) is technically an Object under the hood. Because a function is an object, you can attach properties directly to it.
+
+**Q63: Why do we attach methods to a constructor's `.prototype` instead of putting them directly inside the constructor function?**
+- If you put a method inside the constructor, every single time you create a new object, JavaScript creates a brand new physical copy of that method in memory. If you create 10,000 users, you waste memory creating 10,000 copies of the exact same function. By attaching it to the `.prototype`, all 10,000 users share just **one** single copy of the function, saving massive amounts of memory.
+
+**Q64: What is the Prototype Chain in JavaScript?**
+- It is a mechanism where objects can inherit properties and methods from other objects. If you try to access a property on an object and it doesn't exist, JavaScript will look up the "chain" to the object's parent prototype, and keep looking all the way up until it reaches the master `Object.prototype` (or returns `undefined`).
+
+**Q65: What is the modern way to set up inheritance between two objects in JavaScript?**
+- In the old days, developers used the `__proto__` property (e.g., `Child.__proto__ = Parent`). Today, the modern and safer approach is to use `Object.setPrototypeOf(Child, Parent)`.
