@@ -194,3 +194,38 @@
 
 **Q50: How do you generate a random Hex color code (e.g., `#FF0000`) in JavaScript?**
 - You create a string containing all valid hex characters (`"0123456789ABCDEF"`). Then, you run a loop 6 times, using `Math.random()` to pick a random character from that string and attach it to a `#` symbol.
+
+## 08_events
+
+**Q51: What is the difference between Event Bubbling and Event Capturing in JavaScript?**
+- Both describe the order in which events are fired when elements are nested inside each other.
+- **Bubbling (Default - `false`)**: The event fires on the innermost element first, then bubbles UP to the outer parent elements (Inside -> Out).
+- **Capturing (`true`)**: The event fires on the outermost parent element first, then trickles DOWN to the innermost child element (Outside -> In).
+
+**Q52: How do you stop an event from bubbling up to parent elements?**
+- Inside the event listener function, you call `e.stopPropagation()`. This prevents the event from triggering listeners on any parent elements.
+
+**Q53: How do you cancel a `setTimeout` before it has a chance to execute?**
+- Just like intervals, you must save the timeout to a variable when you create it (e.g., `let myTimeout = setTimeout(...)`). If you call `clearTimeout(myTimeout)` before the timer runs out, the function will be cancelled and will never execute.
+
+## 09_advance_one
+
+**Q54: Before modern `fetch()`, how did developers make API requests in JavaScript?**
+- They used the `XMLHttpRequest` object (often called AJAX). It involved creating a new instance, opening a connection (`xhr.open`), tracking the `readyState` changes from 0 to 4, and finally sending the request (`xhr.send()`).
+
+**Q55: What does `JSON.parse()` do and why is it important when fetching API data?**
+- When you request data from an API across the internet, it always arrives as a giant plain text **String**, even if it looks like an object. `JSON.parse()` converts that string back into a real JavaScript Object so you can access its properties (like `data.followers`).
+
+**Q56: What is a Promise in JavaScript?**
+- A Promise is an object representing the eventual completion (or failure) of an asynchronous operation. It has three states: Pending (waiting), Fulfilled (success, calls `resolve`), or Rejected (failure, calls `reject`).
+
+**Q57: What is the difference between consuming a promise with `.then()/.catch()` vs `async/await`?**
+- They do the exact same thing behind the scenes. 
+- `.then()` uses callbacks and allows the rest of your code to continue running while it waits. 
+- `async/await` makes asynchronous code *look* like synchronous code. It literally pauses the execution of that specific function until the promise resolves, making it easier to read.
+
+**Q58: What does the `.finally()` block do in a Promise chain?**
+- The `.finally()` block executes its code after the promise finishes, **regardless** of whether the promise was resolved (successful) or rejected (failed). It is typically used for cleanup tasks, like hiding a "Loading..." spinner.
+
+**Q59: Why do we have to call `.json()` when using the modern `fetch` API?**
+- `fetch()` returns a Response object containing headers, status codes, and the raw body stream. To actually read the data as a JavaScript Object, you must call the `response.json()` method. (Note: `response.json()` itself returns *another* Promise, which is why we need a second `.then()` or `await`!).
